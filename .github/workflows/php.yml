@@ -28,8 +28,10 @@ jobs:
         key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
         restore-keys: |
           ${{ runner.os }}-php-
+          
     - name: Test CI varaibles
-      run: echo "$ENV_TEST"
+      run: echo $ENV_TEST
+      
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
     
