@@ -9,6 +9,9 @@ on:
 permissions:
   contents: read
 
+env:
+  TEST_VARIABLE: ${{ENV_TEST}}
+
 jobs:
   build:
 
@@ -30,7 +33,7 @@ jobs:
           ${{ runner.os }}-php-
           
     - name: Test CI varaibles
-      run: echo "${{secrets.ENV_TEST}}"
+      run: echo "$TEST_VARIABLE"
       
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
