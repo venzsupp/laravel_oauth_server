@@ -30,7 +30,7 @@ jobs:
           ${{ runner.os }}-php-
           
     - name: Test CI varaibles
-      run: echo "${{secrets.ENV_TEST}}"
+      run: echo "${{variables.ENV_TEST}}"
       
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
