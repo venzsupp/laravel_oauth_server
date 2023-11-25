@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 env:
-  TEST_VARIABLE: "${{secrets.API_KEY}}"
+  TEST_VARIABLE: "${{vars.ENV_TEST}}"
 
 jobs:
   build:
