@@ -1,0 +1,11 @@
+steps:
+1) docker exec -it container name composer update
+2) docker exec -it container name composer install
+3) docker exec -it container name php artisan migrate
+4) docker exec -it oauth_server-php-1 php artisan passport:keys
+// php standard analysis -- phpstan
+5) docker exec -it oauth_server-php-1 vendor/bin/phpstan analyse -l 9 app
+// add phpstan configuration file -- phpstan.neon or phpstan.neon.dist or phpstan.dist.neon
+6) docker exec -it oauth_server-php-1 vendor/bin/phpstan analyse -c phpstan.neon
+// phpstan add baseline to store errors 
+7) docker exec -it oauth_server-php-1 vendor/bin/phpstan analyse -c phpstan.neon --generate-baseline

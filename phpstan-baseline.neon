@@ -1,0 +1,66 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Call to an undefined static method App\\\\Models\\\\User\\:\\:create\\(\\)\\.$#"
+			count: 1
+			path: app/Http/Actions/RegisterAction.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Contracts\\\\Auth\\\\Guard\\:\\:attempt\\(\\)\\.$#"
+			count: 1
+			path: app/Http/Controllers/LoginController.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Contracts\\\\Routing\\\\ResponseFactory\\|Illuminate\\\\Http\\\\Response\\:\\:json\\(\\)\\.$#"
+			count: 2
+			path: app/Http/Controllers/LoginController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\LoginController\\:\\:login\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: app/Http/Controllers/LoginController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\LoginController\\:\\:show\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: app/Http/Controllers/LoginController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\LoginController\\:\\:token\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: app/Http/Controllers/LoginController.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Contracts\\\\Routing\\\\ResponseFactory\\|Illuminate\\\\Http\\\\Response\\:\\:json\\(\\)\\.$#"
+			count: 1
+			path: app/Http/Controllers/RegisterController.php
+
+		-
+			message: "#^Cannot call method handle\\(\\) on mixed\\.$#"
+			count: 1
+			path: app/Http/Controllers/RegisterController.php
+
+		-
+			message: "#^Dead catch \\- Illuminate\\\\Database\\\\UniqueConstraintViolationException is already caught above\\.$#"
+			count: 1
+			path: app/Http/Controllers/RegisterController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\RegisterController\\:\\:show\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: app/Http/Controllers/RegisterController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\RegisterController\\:\\:store\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: app/Http/Controllers/RegisterController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Middleware\\\\RedirectIfAuthenticated\\:\\:handle\\(\\) should return Symfony\\\\Component\\\\HttpFoundation\\\\Response but returns Illuminate\\\\Http\\\\RedirectResponse\\|Illuminate\\\\Routing\\\\Redirector\\.$#"
+			count: 1
+			path: app/Http/Middleware/RedirectIfAuthenticated.php
+
+		-
+			message: "#^Cannot access property \\$id on mixed\\.$#"
+			count: 1
+			path: app/Providers/RouteServiceProvider.php
