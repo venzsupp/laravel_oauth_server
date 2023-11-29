@@ -38,8 +38,13 @@ jobs:
         run: composer update
 
   test:
-    - name: phpstan
-      run: vendor/bin/phpstan analyse -c phpstan.neon --generate-baseline
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: phpstan
+        run: vendor/bin/phpstan analyse -c phpstan.neon --generate-baseline
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
     # Docs: https://getcomposer.org/doc/articles/scripts.md
 
