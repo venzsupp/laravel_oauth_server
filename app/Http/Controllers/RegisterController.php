@@ -18,10 +18,10 @@ class RegisterController extends Controller
             $responseCode = 201;
             $response = ["message" => 'User added succesfully'];
         } catch (QueryException $queryException) {
-            $responseCode = 401;
+            $responseCode = 406;
             $response = ['error' => $queryException->getMessage()];
         } catch (UniqueConstraintViolationException $uniqueException) {
-            $responseCode = 401;
+            $responseCode = 406;
             $response = ['error' => $uniqueException->getMessage()];
         }
         return response()->json($response, $responseCode);
