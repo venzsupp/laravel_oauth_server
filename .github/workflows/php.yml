@@ -76,14 +76,14 @@ jobs:
       - name: Directory Permissions
         run: chmod -R 777 storage bootstrap/cache
       - services:
-        mysql:
-          image: mysql
-          restart: always
-          environment:
-            MYSQL_DATABASE: "laravel_oauth_server"
-            MYSQL_ROOT_PASSWORD: root
-            MYSQL_USER: user
-            MYSQL_PASSWORD: user
+          mysql:
+            image: mysql
+            restart: always
+            environment:
+              MYSQL_DATABASE: "laravel_oauth_server"
+              MYSQL_ROOT_PASSWORD: root
+              MYSQL_USER: user
+              MYSQL_PASSWORD: user
       - name: Create Database
         run: |
           mkdir -p database
