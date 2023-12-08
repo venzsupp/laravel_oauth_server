@@ -54,15 +54,6 @@ jobs:
 
       - name: phpstan
         run: vendor/bin/phpstan analyse -c phpstan.neon --generate-baseline
-  services:
-    mysql:
-      image: mysql
-      restart: always
-      environment:
-        MYSQL_DATABASE: "laravel_oauth_server"
-        MYSQL_ROOT_PASSWORD: root
-        MYSQL_USER: user
-        MYSQL_PASSWORD: user
   php-unit-test:
     runs-on: ubuntu-latest
 
