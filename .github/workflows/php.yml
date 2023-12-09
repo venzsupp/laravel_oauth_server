@@ -61,6 +61,7 @@ jobs:
         image: mysql:8.0
         env:
           MYSQL_DATABASE: laravel-oauth-server
+          MYSQL_ROOT_PASSWORD: root
           MYSQL_USER: user
           MYSQL_PASSWORD: user
         ports:
