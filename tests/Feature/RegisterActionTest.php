@@ -21,13 +21,13 @@ class RegisterActionTest extends TestCase
         $this->assertNull(resolve(RegisterAction::class)->handle($registerRequest));
     }
 
-    // public function testExceptionUserCreated()
-    // {
-    //     $this->expectException(QueryException::class);
-    //     $registerRequest = new RegisterRequest([
-    //         'password' => 'test12345',
-    //         'password_confirmation' => 'test12345',
-    //     ]);
-    //     resolve(RegisterAction::class)->handle($registerRequest);
-    // }
+    public function testExceptionUserCreated()
+    {
+        $this->expectException(QueryException::class);
+        $registerRequest = new RegisterRequest([
+            'password' => 'test12345',
+            'password_confirmation' => 'test12345',
+        ]);
+        resolve(RegisterAction::class)->handle($registerRequest);
+    }
 }
