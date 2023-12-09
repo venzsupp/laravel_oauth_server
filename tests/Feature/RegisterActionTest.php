@@ -8,9 +8,12 @@ use Illuminate\Http\Request;
 use App\Http\Actions\RegisterAction;
 use App\Http\Requests\RegisterRequest;
 use Illuminate\Database\QueryException;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Database\UniqueConstraintViolationException;
 
 class RegisterActionTest extends TestCase
 {
+    use RefreshDatabase;
     public function testUserCreatedSuccessfully()
     {
         $registerRequest = new RegisterRequest([

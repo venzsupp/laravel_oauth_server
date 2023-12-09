@@ -12,8 +12,8 @@ class RegisterAction
 {
     public function handle(RegisterRequest $request): void
     {
-        $email = $request->email ?? '';
-        $password = $request->password ?? '';
+        $email = $request->email;
+        $password = $request->password;
         $name = explode('@', $email)[0];
         $request['name'] = explode('@', $email)[0];
         try {
@@ -22,8 +22,12 @@ class RegisterAction
                 'email' => $email,
                 'password' => $password,
             ]);
-        } catch (QueryException | UniqueConstraintViolationException $queryException) {
+        } catch (QueryException $queryException) {
+            //dd($queryException->getMessage());
             throw $queryException;
+        } catch (QueryException | UniqueConstraintViolationException $uniqueVoilationException) {
+            //dd($queryException->getMessage());
+            throw $uniqueVoilationException;
         }
     }
 }
