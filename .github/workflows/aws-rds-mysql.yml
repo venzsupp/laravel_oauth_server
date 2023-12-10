@@ -33,7 +33,7 @@ jobs:
         run: php artisan key:generate
 
       - name: ssh aws ec2 connection
-        run: chmod 400 ../../../webServerTest.pem
+        run: chmod 400 ../webServerTest.pem
 
       - name: ssh aws ec2 connection
         run: ssh -i webServerTest.pem ubuntu@ec2-3-27-197-74.ap-southeast-2.compute.amazonaws.com
