@@ -1,4 +1,4 @@
-name: PHP Composer
+name: AWS RDS Connection
 
 on:
   push:
@@ -35,8 +35,6 @@ jobs:
         run: php artisan key:generate
       - name: show directory
         run: ls
-      - name: update pem file permissions
-        run: chmod 400 webServerTest.pem
 
       - name: ssh aws ec2 connection
         run: |
