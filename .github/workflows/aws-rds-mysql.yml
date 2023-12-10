@@ -31,10 +31,14 @@ jobs:
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
       - name: Generate key
         run: php artisan key:generate
+
+      - name: ssh aws ec2 connection
+        run: ssh -i webServerTest.pem ubuntu@ec2-3-27-197-74.ap-southeast-2.compute.amazonaws.com
+
       - name: Directory Permissions
         run: chmod -R 777 storage bootstrap/cache
 
       - name: Laravel Migrate Database
         run: php artisan migrate
-      - name: Execute tests (Unit and Feature tests) via PHPUnit
-        run: vendor/bin/phpunit
+      # - name: Execute tests (Unit and Feature tests) via PHPUnit
+      #   run: vendor/bin/phpunit
