@@ -41,7 +41,7 @@ jobs:
       - name: ssh aws ec2 connection
         run: |
           echo "$AWS_KEY" > private_key && chmod 600 private_key
-          ssh -o StrictHostKeyChecking=no -i private_key ${AWS_USER}@${AWS_HOST}
+          ssh -T -o StrictHostKeyChecking=no -i private_key ${AWS_USER}@${AWS_HOST}
 
       - name: Directory Permissions
         run: chmod -R 777 storage bootstrap/cache
