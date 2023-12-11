@@ -33,7 +33,7 @@ jobs:
         run: php -r "file_exists('.env') || copy('.env.example', '.env'); echo 'file found---';  "
 
       - name: get env variables
-        run: php -r "echo env('DB_DATABASE')";
+        run: php -r "echo env('DB_DATABASE');"
 
       - name: Generate key
         run: php artisan key:generate
