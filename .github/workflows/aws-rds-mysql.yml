@@ -10,9 +10,12 @@ permissions:
   contents: read
 
 env:
-  AWS_HOST: "${{secrets.AWS_HOST}}"
-  AWS_USER: "${{secrets.AWS_USER}}"
-  AWS_KEY: "${{secrets.AWS_KEY}}"
+  DB_CONNECTION: "${{vars.AWS_RDS_DB_CONNECTION}}"
+  DB_HOST: "${{secrets.AWS_RDS_HOST}}"
+  DB_PORT: "${{vars.AWS_RDS_DB_PORT}}"
+  DB_DATABASE: "${{vars.AWS_RDS_DB_NAME}}"
+  DB_USERNAME: "${{secrets.AWS_RDS_USER}}"
+  DB_PASSWORD: "${{secrets.AWS_RDS_PASSWORD}}"
 
 jobs:
   aws-rds-mysql:
