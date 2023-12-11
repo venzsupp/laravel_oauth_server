@@ -30,7 +30,10 @@ jobs:
             ${{ runner.os }}-php-
 
       - name: Copy .env
-        run: php -r "file_exists('.env') || copy('.env.example', '.env'); echo 'file found---'; var_dump($_ENV['DB_DATABASE']); "
+        run: php -r "file_exists('.env') || copy('.env.example', '.env'); echo 'file found---';  "
+
+      - name: get env variables
+        run: php -r var_dump($_ENV['DB_DATABASE']);
 
       - name: Generate key
         run: php artisan key:generate
