@@ -9,3 +9,6 @@ steps:
 6) docker exec -it oauth_server-php-1 vendor/bin/phpstan analyse -c phpstan.neon
 // phpstan add baseline to store errors 
 7) docker exec -it oauth_server-php-1 vendor/bin/phpstan analyse -c phpstan.neon --generate-baseline
+
+// login into docker mysql
+NOTE: run mysql -u root -p  
