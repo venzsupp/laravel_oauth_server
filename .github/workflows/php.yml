@@ -1,4 +1,4 @@
-name: PHP Composer and PHPStan
+name: PHP Composer PHPStan and PHP unit test
 
 on:
   push:
