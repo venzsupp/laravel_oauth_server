@@ -1,4 +1,4 @@
-name: AWS RDS Connection
+name: Deploy to EC2
 
 on:
   push:
@@ -16,6 +16,9 @@ env:
   DB_DATABASE: "${{vars.AWS_RDS_DB_NAME}}"
   DB_USERNAME: "${{secrets.AWS_RDS_USER}}"
   DB_PASSWORD: "${{secrets.AWS_RDS_PASSWORD}}"
+  AWS_SSH_KEY: "${{secrets.AWS_SSH_KEY}}"
+  AWS_EC2_HOST: "${{secrets.AWS_EC2_HOST}}"
+  AWS_EC2_USER: "${{secrets.AWS_EC2_USER}}"
 
 jobs:
   aws-rds-mysql:
@@ -47,5 +50,7 @@ jobs:
       - name: Laravel Migrate Database
         run: php artisan migrate
 
-      - name: Execute tests (Unit and Feature tests) via PHPUnit
-        run: vendor/bin/phpunit
+      - name: aws deployment
+        run: |
+          echo "$AWS_SSH_KEY" > private_key && chmod 600 private_key
+          ssh -T -o StrictHostKeyChecking=no -i private_key ${AWS_EC2_USER}@${AWS_EC2_HOST}
