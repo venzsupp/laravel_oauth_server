@@ -1,0 +1,54 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches: ["master"]
+
+permissions:
+  contents: read
+
+env:
+  DB_CONNECTION: "${{vars.AWS_RDS_DB_CONNECTION}}"
+  DB_HOST: "${{secrets.AWS_RDS_HOST}}"
+  DB_PORT: "${{vars.AWS_RDS_DB_PORT}}"
+  DB_DATABASE: "${{vars.AWS_RDS_DB_NAME}}"
+  DB_USERNAME: "${{secrets.AWS_RDS_USER}}"
+  DB_PASSWORD: "${{secrets.AWS_RDS_PASSWORD}}"
+  AWS_SSH_KEY: "${{secrets.AWS_SSH_KEY}}"
+  AWS_EC2_HOST: "${{secrets.AWS_EC2_HOST}}"
+  AWS_EC2_USER: "${{secrets.AWS_EC2_USER}}"
+
+jobs:
+  aws-rds-mysql:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v3
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
+
+      - name: Copy .env
+        run: php -r "file_exists('.env') || copy('.env.example', '.env'); echo 'file found---';  "
+
+      - name: Generate key
+        run: php artisan key:generate
+
+      - name: show directory
+        run: ls
+
+      - name: Directory Permissions
+        run: chmod -R 777 storage bootstrap/cache
+
+      - name: Laravel Migrate Database
+        run: php artisan migrate
+
+      - name: aws deployment
+        run: |
+          echo "$AWS_SSH_KEY" > private_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${AWS_EC2_USER}@${AWS_EC2_HOST}
